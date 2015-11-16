@@ -15,37 +15,47 @@
 
 
 %opening
-\title{Candidates for aLIGO alert G184098 16 Sept 2015}
-\author{}
+\title{Reporte auto-generado por \textit{alertreport}: procesado alerta aLIGO}
+\author{\textbf{alertreport} package @IATE - CONICET - UNC}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-Candidates list ordered by right ascension and likelihood
+Reporte simple mostrando caracter\'{i}sticas de la alerta y objetos de observaci\'on 
+candidatos a ser anfitriones de un evento de Onda gravitacional.
 \end{abstract}
 
-\section{The aLIGO banana likelihood map and associated candidates}
+\section{El mapa celeste de aLIGO: valor de likelihood y objetos asociados}
+El mapa de probabilidad (\textit{likelihood} en ingl\'es) en el cielo se muestra en el diagrama
+de la figura \ref{fig:aitoff_likelihood_map}. El mismo exhibe en mapa de calor las zonas donde es 
+m\'as probable que el evento se encuentre localizado.
+
 \begin{figure}
  \centering
- \includegraphics[width=0.7\textwidth]{./likelihood_map_aitoff.png}
+ \includegraphics[width=0.7\textwidth]{./plots/allsky_likelihoodmap.png}
  % likelihood_map_aitoff2.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
- \caption{Likelihood map of aLIGO detection}
- \label{fig:1}
+ \caption{Mapa de probabilidades de aLIGO, en proyecci\'on ``aitoff'' para todo el cielo.
+ En rojo se puede ver la posicion media del cenith de Mac\'on durante la noche de la alerta.}
+ \label{fig:aitoff_likelihood_map}
 \end{figure}
 
-After a crossmatch between this likelihood maps (\ref{fig:1}) and 
-the accessible objects from bosque alegre (from White catalog)
-we found this candidates \ref{fig:candidates_aitoff}:
+El cruce de estas zonas con el cielo observable desde Mac\'on, se desprende la figura 
+\ref{gnomom_view_Macon_likelihoodmap.png} la cual presenta una vista ``cenital'' de el 
+mapa de calor de probabilidad de aLIGO observable en la localizaci\'on geogr\'afica del cerro.
+Este mapa muestra entonces que cielo accedemos, y en la barra inferior muestra el nivel de 
+\textit{likelihood} en colores.
 
 \begin{figure}
  \centering
- \includegraphics[width=0.7\textwidth]{./candidates_aitoff.png}
+ \includegraphics[width=0.7\textwidth]{./plots/gnomom_view_Macon_likelihoodmap.png}
  % candidates_aitoff.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
- \caption{Aitoff projection of candidates on high likelihood areas of the sky observable from Bosque Alegre}
- \label{fig:candidates_aitoff}
+ \caption{Proyecci\'on ``cenital'' desde Mac\'on, del mapa de calor de probabilidad de aLIGO.}
+ \label{fig:gnomom_view_Macon_likelihoodmap}
 \end{figure}
+
+
 
 The candidates table is as in table \ref{tab:1} and \ref{tab:2}
 
