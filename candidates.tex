@@ -9,6 +9,8 @@
 \usepackage{color}
 \usepackage{subfigure}
 \usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{lscape}
 \usepackage{hyperref}
 \usepackage{textcomp}
 \usepackage[T1]{fontenc}
@@ -42,7 +44,7 @@ m\'as probable que el evento se encuentre localizado.
 \end{figure}
 
 El cruce de estas zonas con el cielo observable desde Mac\'on, se desprende la figura 
-\ref{gnomom_view_Macon_likelihoodmap.png} la cual presenta una vista ``cenital'' de el 
+\ref{fig:gnomom_view_Macon_likelihoodmap} la cual presenta una vista ``cenital'' de el 
 mapa de calor de probabilidad de aLIGO observable en la localizaci\'on geogr\'afica del cerro.
 Este mapa muestra entonces que cielo accedemos, y en la barra inferior muestra el nivel de 
 \textit{likelihood} en colores.
@@ -57,64 +59,17 @@ Este mapa muestra entonces que cielo accedemos, y en la barra inferior muestra e
 
 
 
-The candidates table is as in table \ref{tab:1} and \ref{tab:2}
+\begin{landscape}
+\begin{small}
+\include{./plots/targets_textable}
+\end{small}
 
-
-\begin{table}
-\begin{tiny}
-\begin{tabular}{ccccccc}
-Name & RAJ2000 & DecJ2000 & Likelihood & Appmag & RAJ2015 & DecJ2015 \\
-IC1933 & 3.42774 & -52.78547 & 1.49349139956e-05 & 12.5 & 03h26m06.5532s & -52d43m51.7108s \\
-
-PGC383392 & 3.98036 & -57.98515 & 0.000231408901111 & 16.96 & 03h59m08.6159s & -57d56m28.0242s \\
-
-NGC1529 & 4.12222 & -62.89993 & 0.000302758746887 & 14.52 & 04h07m32.1535s & -62d51m31.3616s \\
-IC2038 & 4.14835 & -55.99074 & 3.14880543387e-05 & 14.3 & 04h09m14.8397s & -55d57m00.2666s \\
-IC2039 & 4.15066 & -56.01172 & 3.21129215248e-05 & 14.93 & 04h09m23.1252s & -55d58m15.9627s \\
-IC2049 & 4.20121 & -58.5573 & 0.000150998492741 & 14.42 & 04h12m22.0723s & -58d31m03.7196s \\
-
-PGC381152 & 4.23897 & -58.20726 & 0.000129832946436 & 16.62 & 04h14m38.2729s & -58d10m06.3583s \\
-
-PGC075108 & 4.24469 & -58.13199 & 0.00012262405884 & 16.37 & 04h14m58.9311s & -58d05m35.8092s \\
-
-NGC1559 & 4.29326 & -62.78358 & 0.000449095238616 & 10.65 & 04h17m47.251s & -62d44m45.0642s \\
-
-PGC128074 & 4.32382 & -60.77205 & 0.000332485724897 & 15.35 & 04h19m40.1071s & -60d44m05.8608s \\
-PGC128075 & 4.324 & -60.53844 & 0.000246715029787 & 15.9 & 04h19m41.0762s & -60d30m04.8816s \\
-ESO118-021 & 4.3597 & -59.33607 & 0.000117320044662 & 14.59 & 04h21m51.0435s & -59d17m59.0335s \\
-PGC128072 & 4.36546 & -59.46008 & 0.000105979314153 & 16.29 & 04h22m11.5981s & -59d25m25.8993s \\
-ESO084-015 & 4.37003 & -63.61097 & 0.000479626417622 & 14.14 & 04h22m21.9215s & -63d34m29.3821s \\
-ESO055-033 & 4.64745 & -69.50669 & 3.74982939394e-05 & 14.06 & 04h38m46.498s & -69d28m34.9548s \\
-ESO084-034 & 4.67399 & -63.10719 & 0.000309707156935 & 13.97 & 04h40m35.7672s & -63d04m38.9558s \\
-ESO084-040 & 4.74999 & -62.70544 & 0.00014616608274 & 14.44 & 04h45m09.7648s & -62d40m38.5689s \\
-ESO119-005 & 4.80483 & -60.29376 & 7.57851949126e-06 & 15.56 & 04h48m30.6962s & -60d16m00.8478s \\
-ESO119-016 & 4.85812 & -61.6509 & 2.56858008017e-05 & 13.16 & 04h51m40.3697s & -61d37m30.7148s \\
-ESO085-014 & 4.91218 & -62.80022 & 6.32540419744e-05 & 13.16 & 04h54m52.9684s & -62d46m32.5102s \\
-PGC016318 & 4.91526 & -61.56747 & 1.13732637571e-05 & 17.95 & 04h55m06.0356s & -61d32m34.8755s \\
-ESO085-017 & 4.9417 & -64.45484 & 0.000277547180699 & 15.41 & 04h56m36.2003s & -64d25m51.4455s \\
-ESO085-024 & 4.968 & -63.9205 & 0.000145453400816 & 12.82 & 04h58m11.7916s & -63d53m49.9176s \\
-ESO085-030 & 5.02499 & -63.29273 & 6.78892581942e-05 & 13.5 & 05h01m37.9131s & -63d16m14.4901s \\
-NGC1809 & 5.03488 & -69.56724 & 0.000365327030426 & 12.64 & 05h01m59.3603s & -69d32m43.3579s \\
-ESO085-047 & 5.12878 & -62.99113 & 2.4278550259e-05 & 13.37 & 05h07m51.811s & -62d58m17.0349s \\
-ESO056-069 & 5.13951 & -69.92419 & 0.000407599763985 & 13.98 & 05h08m14.5985s & -69d54m16.7355s \\
-NGC1892 & 5.28585 & -64.95983 & 0.000113771745789 & 13.26 & 05h17m13.2313s & -64d56m36.971s \\
-NGC2150 & 5.92954 & -69.56084 & 0.000993066675065 & 12.62 & 05h55m38.346s & -69d33m33.1525s \\
-NGC2187A & 6.06229 & -69.58826 & 0.00104948283675 & 12.47 & 06h03m36.1565s & -69d35m22.7984s \\
-NGC2187 & 6.06456 & -69.57743 & 0.00105305015711 & 12.88 & 06h03m44.3616s & -69d34m43.9978s \\
-ESO057-080 & 6.38592 & -68.7328 & 0.000722425589904 & 13.54 & 06h23m03.9571s & -68d44m29.7797s \\
-PGC280995 & 6.4255 & -69.15257 & 0.00104155459775 & 15.08 & 06h25m25.319s & -69d09m44.1811s \\
-PGC269445 & 6.68061 & -71.33026 & 0.000987356077225 & 15.18 & 06h40m37.343s & -71d20m44.5853s \\
-ESO058-018 & 6.83959 & -71.03123 & 0.00114892819585 & 15.99 & 06h50m11.2035s & -71d03m00.9324s \\
-\end{tabular}
-\end{tiny}
-\label{tab:1}
-\end{table}
-
+\end{landscape}
 
 The RA-Dec diagram for the candidates is in fig \ref{fig:candidatesRA-Dec}
 \begin{figure}
  \centering
- \includegraphics[width=0.7\textwidth]{./candidates_radec.png}
+ \includegraphics[width=0.7\textwidth]{./plots/aitoff_selected_targets.png}
  % candidates_radec.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
  \caption{Ra-Dec projection of candidates in the sky.}
  \label{fig:candidatesRA-Dec}
