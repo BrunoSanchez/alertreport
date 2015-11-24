@@ -1,0 +1,28 @@
+
+""" Utils for linked lists in a OOP.
+You might wonder why printList and printBackward are functions and not methods in the Node class. The reason is that we want to use None to represent the empty list and it is not legal to invoke a method on None. This limitation makes it awkward to write list-manipulating code in a clean object-oriented style."""
+
+
+class Node:
+    def __init__(self, cargo=None, next=None): 
+        self.cargo = cargo 
+        self.next  = next 
+
+    def __str__(self): 
+        return str(self.cargo)
+
+def printList(node): 
+    while node: 
+        print node, 
+        node = node.next 
+    print 
+
+def printBackward(list): 
+    if list == None: return 
+    head = list 
+    tail = list.next 
+    printBackward(tail) 
+    print head, 
+    
+    
+
