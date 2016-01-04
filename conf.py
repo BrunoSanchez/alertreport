@@ -1,8 +1,10 @@
 
 plots = './plots'
 
-macon_lat = '-24.623'
-macon_lon = '-67.328'
-macon_elevation = 4600
+macon_lat = '-31.4'
+macon_lon = '-64.5'
+macon_elevation = 1350
+
+skymap = './skymap.fits'
 
 catalog = './GWGCCatalog.txt'
