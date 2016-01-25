@@ -1,35 +1,36 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-# coding: utf-8
 
-# Copyright (c) 2015, Cordoba Astronomical Observatory.  All rights reserved.
+# Copyright (c) 2016, Cordoba Astronomical Observatory.  All rights reserved.
 #                    Unauthorized reproduction prohibited.
 # NAME:
-#        aligo-vs-glade
+#        Alertreport
 # PURPOSE:
-#        "Toritos Scheduler White catalog loader
+#        Toritos Scheduler White catalog loader
 #
 # CATEGORY:
 #        Program.
-#
-# COMPILING SEQUENCE:
-#        ipython notebook
 #
 # INPUTS:
 #
 #
 # MODIFICATION HISTORY:
 #   Written by: Mariano Dominguez, July 2015
-#   from previuos version using White Catalog January 2014.
-#   Any inquirities send an e-mail to mardom@oac.uncor.edu
+#    from previuos version using White Catalog January 2014.
+#    Any inquirities send an e-mail to mardom@oac.uncor.edu
 #
-
-# Modified by Bruno Sanchez, October 2015
+#   Modified by Bruno Sanchez,
+#    any inquirities send an email to bruno@oac.unc.edu.ar
 
 # Load useful packages
 import os
+import time
+
 import numpy as np
 import math as m
 
+import ephem
 import seaborn
 import matplotlib.pyplot as plt
 
@@ -47,32 +48,25 @@ if not os.path.isdir(plots):
     os.mkdir(plots)
 
 
-import time
-# print (time.strftime("%d/%m/%Y"))
-# print (time.strftime("%H:%M:%S"))
+obs_date=time.strftime("%Y/%m/%d %H:%M:%S")
 
-macon_date=time.strftime("%Y/%m/%d %H:%M:%S")
-
-print
-
-import ephem
-macon = ephem.Observer()
-macon.lat = cf.macon_lat
-macon.lon = cf.macon_lon
-macon.elevation = cf.macon_elevation
+obs = ephem.Observer()
+obs.lat = cf.obs_lat
+obs.lon = cf.obs_lon
+obs.elevation = cf.obs_elevation
 
 # extracting the correct values. WEIRD
-print float(ephem.degrees(macon.lon*180./m.pi)), float(ephem.degrees(macon.lat*180./m.pi))
+print float(ephem.degrees(obs.lon*180./m.pi)), float(ephem.degrees(obs.lat*180./m.pi))
 
 sun = ephem.Sun()
-sun.compute(macon)
+sun.compute(obs)
 print sun.a_ra, sun.a_dec
 sun_coords = SkyCoord(str(sun.a_ra), str(sun.a_dec), unit=(u.hourangle, u.deg))
 
 print "Sun coordinates are = {}".format(sun_coords.to_string('hmsdms'))
 
 moon = ephem.Moon()
-moon.compute(macon)
+moon.compute(obs)
 moon_coords = SkyCoord(str(moon.a_ra), str(moon.a_dec), unit=(u.hourangle, u.deg))
 
 print "Moon coordinates are = {}".format(moon_coords.to_string('hmsdms'))
@@ -84,7 +78,7 @@ print "Moon coordinates are = {}".format(moon_coords.to_string('hmsdms'))
 
 # In[9]:
 
-sunrise, sunset = macon.next_rising(sun), macon.next_setting(sun)
+sunrise, sunset = obs.next_rising(sun), obs.next_setting(sun)
 
 print "The time of sunset is {}, \nand the time of sunrise is {}".format(sunset, sunrise)
 
@@ -96,40 +90,25 @@ alpha_observable_min = alpha_zenith_sunset - 40.*u.deg
 alpha_zenith_sunrise = sun_coords.ra - 105.*u.deg
 alpha_observable_max = alpha_zenith_sunrise + 40.*u.deg
 
-
-# In[12]:
-
 print alpha_observable_min.hour, alpha_observable_max.hour
 
-
-# In[13]:
-
 white_cat= cf.catalog
-
 white_table = ascii.read(white_cat, delimiter=' ', format='commented_header')#, data_start=2
-#white_table
 
-
-# In[14]:
-
-dist_lim = 80.
+dist_lim = cf.dist_lim
 near = white_table['Dist'] < dist_lim      # Distance cut
-visible = white_table['App_Mag']< 18.5     # Apparent Magnitude cut
-bright = white_table['Abs_Mag']< -18.      # Absolute Magnitude cut
-lim_dec = white_table['Dec']< 30.          # Declination cut
+visible = white_table['App_Mag']< cf.app_mag     # Apparent Magnitude cut
+bright = white_table['Abs_Mag']< cf.abs_mag      # Absolute Magnitude cut
+lim_dec = white_table['Dec']< cf.dec_lim          # Declination cut
 alfa_min = white_table['RA'] >  float(alpha_observable_min.hour)       # Alpha cut
 alfa_max = white_table['RA'] <= float(alpha_observable_max.hour)
 
-
-# In[15]:
 
 if alpha_observable_max.hour > alpha_observable_min.hour:
     sample = white_table[near & visible & bright & lim_dec & (alfa_min & alfa_max)]
 else:
     sample = white_table[near & visible & bright & lim_dec & (alfa_min | alfa_max)]
 
-
-# In[16]:
 
 plt.hist(sample['App_Mag'])
 plt.xlabel('App B Mag')
@@ -138,10 +117,6 @@ plt.title('App B Mag sample histogram')
 
 plt.savefig(os.path.join(plots, 'appmag_sample_histogram.png'), dpi=300)
 
-#plt.show()
-
-
-# In[17]:
 
 plt.hist(sample['RA'])
 plt.xlabel('RA [h]')
@@ -150,10 +125,6 @@ plt.title('Right Ascension sample histogram')
 
 plt.savefig(os.path.join(plots, 'RA_sample_histogram.png'), dpi=300)
 
-#plt.show()
-
-
-# In[19]:
 
 plt.figure(figsize=(10,10))
 plt.subplot(211, projection="aitoff")
