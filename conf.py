@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from reportlab.lib.pagesize import a4
 
 plots = './plots'
 
@@ -8,3 +12,5 @@ macon_elevation = 1350
 skymap = './skymap.fits'
 
 catalog = './GWGCCatalog.txt'
+
+docsize = a4
