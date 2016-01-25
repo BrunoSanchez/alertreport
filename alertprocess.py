@@ -23,6 +23,10 @@
 #   Modified by Bruno Sanchez,
 #    any inquirities send an email to bruno@oac.unc.edu.ar
 
+# TODO  we should avoid the galactic plane
+# TODO  we should avoid moon, and moon phases
+# TODO  we should try to use pairs of galaxies
+
 # Load useful packages
 import os
 import time
@@ -109,7 +113,7 @@ if alpha_observable_max.hour > alpha_observable_min.hour:
 else:
     sample = white_table[near & visible & bright & lim_dec & (alfa_min | alfa_max)]
 
-
+# Plot of magnitudes Histogram
 plt.hist(sample['App_Mag'])
 plt.xlabel('App B Mag')
 plt.ylabel('Number')
@@ -117,7 +121,7 @@ plt.title('App B Mag sample histogram')
 
 plt.savefig(os.path.join(plots, 'appmag_sample_histogram.png'), dpi=300)
 
-
+# Plot of RA histogram
 plt.hist(sample['RA'])
 plt.xlabel('RA [h]')
 plt.ylabel('Number')
@@ -125,7 +129,7 @@ plt.title('Right Ascension sample histogram')
 
 plt.savefig(os.path.join(plots, 'RA_sample_histogram.png'), dpi=300)
 
-
+# Plot of aitoff projection in the sky
 plt.figure(figsize=(10,10))
 plt.subplot(211, projection="aitoff")
 deg2rad=np.pi/180.
@@ -147,12 +151,10 @@ else:
     ramin = alpha_observable_min.hour
 
 mean_zenith_ra = ((ramax-ramin)*15./2.)
+zenith_dec = float(ephem.degrees(obs.lat*180./m.pi))
 
-zenith_dec = float(ephem.degrees(macon.lat*180./m.pi))
+#print mean_zenith_ra, zenith_dec
 
-print mean_zenith_ra, zenith_dec
-
-# we should avoid the galactic plane
 plt.plot(xg,yg, "r.")
 
 plt.plot(mean_zenith_ra*deg2rad, zenith_dec*deg2rad, 'bo' )
@@ -161,7 +163,6 @@ plt.title("Aitoff projection of the observable\n objects from Macon")
 plt.xlabel("Right Ascention [deg]")
 plt.ylabel("Declination [deg]")
 plt.savefig(os.path.join(plots, 'radec_aitoff_sample.png'), dpi=300)
-#plt.show()
 
 
 # In[20]:
@@ -261,10 +262,10 @@ hp.projscatter(mean_zenith_ra, zenith_dec
 hp.projtext(mean_zenith_ra, zenith_dec,
             'Macon Zenith\n (mean position\n over the night)', lonlat=True, color="red")
 
-for ra in range(0,360,60):
-    for dec in range(-60,80,30):
-        if not (ra == 300 and dec == -30):
-            hp.projtext(ra,dec,'({}, {})'.format(ra,dec), lonlat=True, color='red')
+#for ra in range(0,360,60):
+#    for dec in range(-60,80,30):
+#        if not (ra == 300 and dec == -30):
+#            hp.projtext(ra,dec,'({}, {})'.format(ra,dec), lonlat=True, color='red')
 
 plt.savefig(os.path.join(plots, 'allsky_likelihoodmap_masked.png'), dpi=300)
 #plt.show()
