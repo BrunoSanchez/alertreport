@@ -5,6 +5,7 @@ import time
 
 import astropy.units as u
 from astropy.coordinates import EarthLocation
+from astropy.time import Time
 from pytz import timezone
 from astroplan import Observer
 
@@ -23,7 +24,7 @@ observer = Observer(name='EABA',
 
 
 obs_date=time.strftime("%Y/%m/%d %H:%M")
-
+obs_time = Time.now()
 # Astronomical cuts
 dist_lim = 80.  # Mpc
 app_mag = 18.
