@@ -9,8 +9,8 @@ from astropy.time import Time
 from pytz import timezone
 from astroplan import Observer
 
-longitude = '-31.4d'
-latitude = '-64.5d'
+latitude = '-31.5983d'
+longitude = '-64.5467d'
 elevation = 1350 * u.m
 location = EarthLocation.from_geodetic(longitude, latitude, elevation)
 
